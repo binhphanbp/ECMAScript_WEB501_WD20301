@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kiểm tra sở thích</title>
+    <style>
+      :root {
+        --bg: #0f1724;
+        --card: #0b1220;
+        --accent: #07c;
+        --success: #16a34a;
+        --danger: #ef4444;
+        --muted: #94a3b8;
+        --glass: rgba(255, 255, 255, 0.03);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+          Roboto, 'Helvetica Neue', Arial;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, #071022 0%, #081226 60%);
+        color: #e6eef8;
+        padding: 24px;
+      }
+      .card {
+        width: 100%;
+        max-width: 760px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 12px;
+        padding: 28px;
+        box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 20px;
+      }
+      p.lead {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      form.row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
+      input[type='text'] {
+        flex: 1 1 320px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        background: var(--glass);
+        color: inherit;
+        outline: none;
+        font-size: 15px;
+        transition: box-shadow 0.15s, border-color 0.15s;
+      }
+      input[type='text']:focus {
+        border-color: rgba(7, 156, 255, 0.9);
+        box-shadow: 0 4px 18px rgba(7, 156, 255, 0.08);
+      }
+      button {
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 0;
+        background: linear-gradient(180deg, var(--accent), #0666b7);
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+      }
+      button.secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+      }
+      .result {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-weight: 600;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        max-width: 100%;
+        word-break: break-word;
+      }
+      .result.ok {
+        background: rgba(22, 163, 74, 0.12);
+        color: var(--success);
+        border: 1px solid rgba(22, 163, 74, 0.12);
+      }
+      .result.not {
+        background: rgba(239, 68, 68, 0.08);
+        color: var(--danger);
+        border: 1px solid rgba(239, 68, 68, 0.06);
+      }
+      .favorites {
+        margin-top: 18px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+        color: var(--muted);
+        border: 1px solid rgba(255, 255, 255, 0.02);
+      }
+      .hint {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      footer {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 520px) {
+        form.row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card" role="main">
+      <h1>Kiểm tra sở thích của bạn</h1>
+      <p class="lead">
+        Nhập một sở thích (ví dụ: "Javascript", "ReactJS") để kiểm tra có chung
+        sở thích trong danh sách hay không.
+      </p>
+
+      <form id="favForm" class="row" aria-label="Form kiểm tra sở thích">
+        <label for="favoriteInput" class="sr-only" style="display: none"
+          >Sở thích</label
+        >
+        <input
+          id="favoriteInput"
+          type="text"
+          placeholder="Nhập sở thích của bạn"
+          autocomplete="off"
+        />
+        <button type="submit" id="checkBtn">Kiểm tra</button>
+        <button
+          type="button"
+          id="addBtn"
+          class="secondary"
+          title="Thêm vào danh sách"
+        >
+          Thêm vào danh sách
+        </button>
+      </form>
+
+      <div id="output" aria-live="polite"></div>
+
+      <div class="hint">Danh sách sở thích mặc định:</div>
+      <div id="favorites" class="favorites" aria-hidden="false"></div>
+
+      <footer>
+        <div>🔨🤖🔧 Javascript helper</div>
+        <div style="opacity: 0.8">
+          Nhạy cảm chữ hoa/thường:
+          <strong id="caseMode">Không phân biệt</strong>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Danh sách sở thích mặc định
+      const myFavorite = ['Javascript', 'ReactJS', 'NextJS', 'NestJS'];
+
+      // Hiển thị danh sách chip
+      const favoritesContainer = document.getElementById('favorites');
+      const output = document.getElementById('output');
+      const input = document.getElementById('favoriteInput');
+      const form = document.getElementById('favForm');
+      const addBtn = document.getElementById('addBtn');
+      const caseModeEl = document.getElementById('caseMode');
+
+      // Cấu hình: có phân biệt chữ hoa/thường không
+      const CASE_SENSITIVE = false; // đổi thành true nếu muốn phân biệt strict
+
+      caseModeEl.textContent = CASE_SENSITIVE ? 'Phân biệt' : 'Không phân biệt';
+
+      function renderFavorites() {
+        favoritesContainer.innerHTML = '';
+        myFavorite.forEach((item) => {
+          const chip = document.createElement('div');
+          chip.className = 'chip';
+          chip.textContent = item;
+          favoritesContainer.appendChild(chip);
+        });
+      }
+
+      // Hàm kiểm tra — sửa lỗi logic: phải lặp hết mảng và chỉ trả về "Không chung sở thích" sau khi kiểm tra toàn bộ mảng
+      function checkFavorite(a) {
+        if (!a || typeof a !== 'string') return null;
+        const query = CASE_SENSITIVE ? a.trim() : a.trim().toLowerCase();
+
+        for (let i = 0; i < myFavorite.length; i++) {
+          const element = CASE_SENSITIVE
+            ? myFavorite[i]
+            : myFavorite[i].toLowerCase();
+          if (element === query) {
+            return 'Chung sở thích';
+          }
+        }
+        return 'Không chung sở thích';
+      }
+
+      function showResult(message, ok = false) {
+        output.innerHTML = '';
+        const div = document.createElement('div');
+        div.className = 'result ' + (ok ? 'ok' : 'not');
+        const icon = document.createElement('span');
+        icon.textContent = ok ? '✅' : '❌';
+        div.appendChild(icon);
+        const text = document.createElement('span');
+        text.textContent = ' ' + message;
+        div.appendChild(text);
+        output.appendChild(div);
+      }
+
+      // Xử lý submit form (kiểm tra)
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const val = input.value.trim();
+        if (!val) {
+          showResult('Vui lòng nhập một sở thích để kiểm tra.', false);
+          return;
+        }
+        const res = checkFavorite(val);
+        showResult(`${res}: "${val}"`, res === 'Chung sở thích');
+      });
+
+      // Nút thêm vào danh sách
+      addBtn.addEventListener('click', () => {
+        const val = input.value.trim();
+        if (!val) {
+          showResult('Vui lòng nhập một sở thích để thêm.', false);
+          return;
+        }
+
+        // Kiểm tra trùng (tùy config CASE_SENSITIVE)
+        const normalized = CASE_SENSITIVE ? val : val.toLowerCase();
+        const exists = myFavorite.some(
+          (i) => (CASE_SENSITIVE ? i : i.toLowerCase()) === normalized
+        );
+        if (exists) {
+          showResult(`Đã tồn tại "${val}" trong danh sách.`, false);
+          return;
+        }
+
+        myFavorite.push(val);
+        renderFavorites();
+        showResult(`Đã thêm "${val}" vào danh sách.`, true);
+        input.value = '';
+      });
+
+      // Enter trong input sẽ submit form — đã xử lý ở trên
+      // Render ban đầu
+      renderFavorites();
+
+      // Lời khuyên nhỏ: bạn có thể đổi CASE_SENSITIVE = true nếu muốn so sánh phân biệt hoa/thường.
+    </script>
+  </body>
+</html>
