@@ -30,4 +30,3 @@ const checkFavorite2 = (number) => {
     result = 'Chung sở thích';
   }
 };
-console.log(checkFavorite('NextJS'));

@@ -25,9 +25,7 @@ result = `Kết quả kiểm tra: ${b}`;
 console.log(result);
 
 const checkFavorite2 = (number) => {
-  let result = 'Không chung sở thích';
-  if (myFavorite.includes(number)) {
-    result = 'Chung sở thích';
-  }
+  myFavorite.includes(number)
+    ? console.log('Chung sở thích')
+    : console.log('Không chung sở thích');
 };
-console.log(checkFavorite('NextJS'));

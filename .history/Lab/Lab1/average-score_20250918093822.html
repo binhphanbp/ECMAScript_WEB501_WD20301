@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bảng điểm sinh viên</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f2f6fc;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      form {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      form input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      form button {
+        padding: 10px 16px;
+        background: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      form button:hover {
+        background: #0b5ed7;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px 12px;
+        text-align: center;
+      }
+      th {
+        background: #0d6efd;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+      .gioi {
+        color: green;
+        font-weight: bold;
+      }
+      .kha {
+        color: blue;
+        font-weight: bold;
+      }
+      .trungbinh {
+        color: orange;
+        font-weight: bold;
+      }
+      .yeu {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quản lý bảng điểm sinh viên</h1>
+
+    <!-- Form nhập điểm -->
+    <form id="formSV">
+      <input type="text" id="mssv" placeholder="MSSV" required />
+      <input type="text" id="ten" placeholder="Họ tên" required />
+      <input
+        type="number"
+        id="mon1"
+        placeholder="Điểm môn 1"
+        min="0"
+        max="10"
+        required
+      />
+      <input
+        type="number"
+        id="mon2"
+        placeholder="Điểm môn 2"
+        min="0"
+        max="10"
+        required
+      />
+      <button type="submit">Thêm sinh viên</button>
+    </form>
+
+    <!-- Bảng điểm -->
+    <table id="bangdiem">
+      <thead>
+        <tr>
+          <th>MSSV</th>
+          <th>Họ tên</th>
+          <th>Môn 1</th>
+          <th>Môn 2</th>
+          <th>Điểm TB</th>
+          <th>Xếp loại</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      const dssv = [];
+
+      const tinhDiemTB = (sv) => ((sv.mon1 + sv.mon2) / 2).toFixed(1);
+
+      const xepLoai = (diemTB) => {
+        const dtb = parseFloat(diemTB);
+        if (dtb >= 8) return { loai: 'Giỏi', cls: 'gioi' };
+        if (dtb >= 6.5) return { loai: 'Khá', cls: 'kha' };
+        if (dtb >= 5) return { loai: 'Trung bình', cls: 'trungbinh' };
+        return { loai: 'Yếu', cls: 'yeu' };
+      };
+
+      const hienThiDSSV = () => {
+        const tbody = document.querySelector('#bangdiem tbody');
+        tbody.innerHTML = '';
+
+        dssv.forEach((sv) => {
+          const diemTB = tinhDiemTB(sv);
+          const loai = xepLoai(diemTB);
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td>${sv.mssv}</td>
+          <td>${sv.ten}</td>
+          <td>${sv.mon1}</td>
+          <td>${sv.mon2}</td>
+          <td>${diemTB}</td>
+          <td class="${loai.cls}">${loai.loai}</td>
+        `;
+          tbody.appendChild(tr);
+        });
+      };
+
+      document.getElementById('formSV').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const mssv = document.getElementById('mssv').value.trim();
+        const ten = document.getElementById('ten').value.trim();
+        const mon1 = parseFloat(document.getElementById('mon1').value);
+        const mon2 = parseFloat(document.getElementById('mon2').value);
+
+        if (!mssv || !ten || isNaN(mon1) || isNaN(mon2)) {
+          alert('Vui lòng nhập đầy đủ và chính xác!');
+          return;
+        }
+
+        dssv.push({ mssv, ten, mon1, mon2 });
+        hienThiDSSV();
+
+        e.target.reset();
+      });
+    </script>
+  </body>
+</html>

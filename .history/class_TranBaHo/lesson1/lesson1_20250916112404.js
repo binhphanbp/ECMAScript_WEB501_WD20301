@@ -23,11 +23,3 @@ function checkFavorite(a) {
 let b = checkFavorite('NextJS');
 result = `Kết quả kiểm tra: ${b}`;
 console.log(result);
-
-const checkFavorite2 = (number) => {
-  let result = 'Không chung sở thích';
-  if (myFavorite.includes(number)) {
-    result = 'Chung sở thích';
-  }
-};
-console.log(checkFavorite('NextJS'));

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kiểm tra sở thích</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 350px;
+      }
+      h2 {
+        margin-bottom: 15px;
+        color: #333;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      #ketQua {
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Kiểm tra sở thích</h2>
+      <input
+        id="soThichInput"
+        type="text"
+        placeholder="Nhập sở thích của bạn..."
+      />
+      <button onclick="kiemTra()">Kiểm tra</button>
+      <div id="ketQua"></div>
+    </div>
+
+    <script>
+      // 1. Khai báo mảng bằng const
+      const soThich = [
+        'đọc sách',
+        'chơi game',
+        'nghe nhạc',
+        'đá bóng',
+        'lập trình',
+      ];
+
+      // 2. Khai báo biến kết quả bằng var
+      var ketQua = '';
+
+      // 3. Viết hàm kiểm tra sở thích
+      const kiemTraSoThich = (input) => {
+        return soThich.includes(input.toLowerCase());
+      };
+
+      // 4. Hàm xử lý khi bấm nút
+      const kiemTra = () => {
+        const input = document
+          .getElementById('soThichInput')
+          .value.trim()
+          .toLowerCase();
+        if (input === '') {
+          ketQua = '⚠️ Vui lòng nhập sở thích!';
+        } else if (kiemTraSoThich(input)) {
+          ketQua = `✅ Sở thích "${input}" có trong danh sách!`;
+        } else {
+          ketQua = `❌ Sở thích "${input}" chưa có trong danh sách.`;
+        }
+        document.getElementById('ketQua').textContent = ketQua;
+      };
+    </script>
+  </body>
+</html>
