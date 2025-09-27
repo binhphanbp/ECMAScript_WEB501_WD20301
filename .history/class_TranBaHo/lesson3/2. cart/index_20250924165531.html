@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Giỏ hàng</title>
     <style>
       :root {
@@ -11,7 +11,6 @@
         --border: #e6ebf2;
         --muted: #6c757d;
         --accent: #6c5ce7;
-        --quantity: #a9a1e5;
         --danger: #ff4757;
         --radius: 12px;
         --shadow: 0 6px 18px rgba(22, 27, 34, 0.08);
@@ -41,7 +40,7 @@
         padding: 20px;
       }
 
-      /* LEFT BOX */
+      /* LEFT BOX - products */
       #cart-products {
         display: flex;
         flex-direction: column;
@@ -73,44 +72,24 @@
         font-weight: 600;
         font-size: 1rem;
       }
+      .item-sku {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
       .item-price {
         color: var(--accent);
         font-weight: 500;
       }
+      .item-qty input {
+        width: 80px;
+        padding: 6px 8px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        text-align: center;
+      }
       .item-total {
         font-weight: 600;
       }
-
-      .item-qty {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 4px 8px;
-      }
-      .qty-btn {
-        border: none;
-        background: var(--quantity);
-        color: #fff;
-        font-size: 16px;
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-      }
-      .qty-btn:disabled {
-        background: #ddd;
-        color: #999;
-        cursor: not-allowed;
-      }
-      .qty-value {
-        width: 28px;
-        text-align: center;
-        font-weight: 500;
-      }
-
       .remove-btn {
         background: none;
         border: none;
@@ -119,7 +98,7 @@
         font-size: 22px;
       }
 
-      /* RIGHT BOX */
+      /* RIGHT BOX - summary */
       #cart-summary {
         display: flex;
         flex-direction: column;
@@ -137,20 +116,17 @@
         border-top: 1px solid var(--border);
         padding-top: 12px;
       }
-
-      .voucher-row {
+      .voucher {
         display: flex;
         gap: 8px;
-        position: relative;
       }
-      #voucher-input {
+      .voucher input {
         flex: 1;
         padding: 10px;
         border-radius: 8px;
         border: 1px solid var(--border);
       }
-      #apply-voucher-btn,
-      #toggle-voucher-list-btn {
+      .voucher button {
         padding: 10px 14px;
         border: none;
         border-radius: 8px;
@@ -159,41 +135,6 @@
         font-weight: 600;
         cursor: pointer;
       }
-      #toggle-voucher-list-btn {
-        padding: 10px;
-        min-width: 40px;
-      }
-
-      .voucher-dropdown {
-        position: absolute;
-        top: 110%;
-        right: 0;
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        box-shadow: var(--shadow);
-        width: 100%;
-        max-height: 240px;
-        overflow-y: auto;
-        z-index: 10;
-      }
-      .voucher-option {
-        padding: 10px;
-        border-bottom: 1px solid var(--border);
-        cursor: pointer;
-      }
-      .voucher-option:last-child {
-        border-bottom: none;
-      }
-      .voucher-option:hover {
-        background: #f6f4ff;
-      }
-      .voucher-option.disabled {
-        color: var(--muted);
-        cursor: not-allowed;
-        background: #f9f9f9;
-      }
-
       #checkout-btn {
         padding: 14px;
         border: none;
@@ -210,13 +151,6 @@
       }
       #checkout-btn:active {
         transform: translateY(1px);
-      }
-
-      .empty-state {
-        text-align: center;
-        color: var(--muted);
-        font-size: 1rem;
-        padding: 40px 0;
       }
 
       /* Responsive */
@@ -239,44 +173,88 @@
   </head>
   <body>
     <main class="cart">
-      <!-- LEFT -->
+      <!-- LEFT BOX -->
       <section id="cart-products" class="card">
         <h2>Giỏ hàng của bạn</h2>
+
+        <div class="cart-item">
+          <img
+            src="https://down-vn.img.susercontent.com/file/sg-11134201-7rd54-lrhzvjh4i8w527"
+            alt="Áo thun nam basic"
+          />
+          <div class="item-info">
+            <div class="item-name">Áo thun nam basic</div>
+            <div class="item-sku">Mã: ATN001</div>
+            <div class="item-price">120.000₫</div>
+          </div>
+          <div class="item-qty">
+            <input type="number" min="1" value="2" />
+          </div>
+          <div class="item-total">240.000₫</div>
+          <button class="remove-btn" title="Xóa sản phẩm">&times;</button>
+        </div>
+
+        <div class="cart-item">
+          <img
+            src="https://down-vn.img.susercontent.com/file/sg-11134201-7rd59-lrhzxi2u6p0s28"
+            alt="Giày sneaker trắng"
+          />
+          <div class="item-info">
+            <div class="item-name">Giày sneaker trắng</div>
+            <div class="item-sku">Mã: GS002</div>
+            <div class="item-price">650.000₫</div>
+          </div>
+          <div class="item-qty">
+            <input type="number" min="1" value="1" />
+          </div>
+          <div class="item-total">650.000₫</div>
+          <button class="remove-btn" title="Xóa sản phẩm">&times;</button>
+        </div>
+
+        <div class="cart-item">
+          <img
+            src="https://down-vn.img.susercontent.com/file/sg-11134201-7rd4l-lrhzvjue3r0qdb"
+            alt="Balo laptop thời trang"
+          />
+          <div class="item-info">
+            <div class="item-name">Balo laptop thời trang</div>
+            <div class="item-sku">Mã: BL003</div>
+            <div class="item-price">320.000₫</div>
+          </div>
+          <div class="item-qty">
+            <input type="number" min="1" value="1" />
+          </div>
+          <div class="item-total">320.000₫</div>
+          <button class="remove-btn" title="Xóa sản phẩm">&times;</button>
+        </div>
       </section>
 
-      <!-- RIGHT -->
+      <!-- RIGHT BOX -->
       <aside id="cart-summary" class="card">
         <h2>Tóm tắt đơn hàng</h2>
+
         <div class="summary-row">
-          <span>Tạm tính</span><span id="subtotal-amount">0 ₫</span>
+          <span>Tạm tính</span>
+          <span>1.210.000₫</span>
         </div>
-        <div class="voucher-row">
-          <input
-            id="voucher-input"
-            type="text"
-            placeholder="Nhập mã voucher (VD: VOUCHER30)"
-          />
-          <button id="apply-voucher-btn" type="button">Áp dụng</button>
-          <button id="toggle-voucher-list-btn" type="button">▼</button>
-          <div
-            id="voucher-dropdown"
-            class="voucher-dropdown"
-            style="display: none"
-          ></div>
+
+        <div class="voucher">
+          <input type="text" placeholder="Nhập mã voucher" />
+          <button>Áp dụng</button>
         </div>
+
         <div class="summary-row">
-          <span>Giảm giá</span><span id="discount-amount">0 ₫</span>
+          <span>Phí vận chuyển</span>
+          <span>30.000₫</span>
         </div>
-        <div class="summary-row">
-          <span>Phí vận chuyển</span><span id="shipping-amount">0 ₫</span>
-        </div>
+
         <div class="summary-row total">
-          <span>Tổng cộng</span><span id="total-amount">0 ₫</span>
+          <span>Tổng cộng</span>
+          <span>1.240.000₫</span>
         </div>
+
         <button id="checkout-btn">Tiếp tục thanh toán</button>
       </aside>
     </main>
-
-    <script src="./main.js"></script>
   </body>
 </html>
