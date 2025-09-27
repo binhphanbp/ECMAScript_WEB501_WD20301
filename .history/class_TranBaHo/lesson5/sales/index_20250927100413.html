@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sale Khuyến Mãi Khủng</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f8f9fa;
+        color: #333;
+        padding: 20px;
+      }
+
+      .sale-container {
+        max-width: 1200px;
+        margin: auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 15px;
+      }
+
+      .tab {
+        cursor: pointer;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+
+      .tab.active {
+        background: #ff4757;
+        color: #fff;
+      }
+
+      .countdown {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ff4757;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .product-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 12px;
+      }
+
+      .product-info h4 {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      .product-info p {
+        color: #ff4757;
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .products {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sale-container">
+      <div class="header">
+        <div class="tabs">
+          <div class="tab active" data-tab="new">Sản phẩm mới</div>
+          <div class="tab" data-tab="bestseller">Bán chạy</div>
+          <div class="tab" data-tab="featured">Nổi bật</div>
+        </div>
+        <div class="countdown" id="countdown">00:00:00</div>
+      </div>
+      <div class="products" id="product-list"></div>
+    </div>
+
+    <script>
+      // ========================= DATA =========================
+      const productsData = {
+        new: [
+          {
+            name: 'Áo thun nam',
+            price: '250,000đ',
+            image: 'https://picsum.photos/300/200?random=1',
+          },
+          {
+            name: 'Quần jeans nữ',
+            price: '450,000đ',
+            image: 'https://picsum.photos/300/200?random=2',
+          },
+          {
+            name: 'Giày sneaker',
+            price: '750,000đ',
+            image: 'https://picsum.photos/300/200?random=3',
+          },
+          {
+            name: 'Túi xách thời trang',
+            price: '350,000đ',
+            image: 'https://picsum.photos/300/200?random=4',
+          },
+        ],
+        bestseller: [
+          {
+            name: 'Áo sơ mi trắng',
+            price: '320,000đ',
+            image: 'https://picsum.photos/300/200?random=5',
+          },
+          {
+            name: 'Đồng hồ nam',
+            price: '1,250,000đ',
+            image: 'https://picsum.photos/300/200?random=6',
+          },
+          {
+            name: 'Giày cao gót',
+            price: '680,000đ',
+            image: 'https://picsum.photos/300/200?random=7',
+          },
+          {
+            name: 'Mũ lưỡi trai',
+            price: '150,000đ',
+            image: 'https://picsum.photos/300/200?random=8',
+          },
+        ],
+        featured: [
+          {
+            name: 'Laptop gaming',
+            price: '18,500,000đ',
+            image: 'https://picsum.photos/300/200?random=9',
+          },
+          {
+            name: 'Điện thoại iPhone',
+            price: '25,000,000đ',
+            image: 'https://picsum.photos/300/200?random=10',
+          },
+          {
+            name: 'Tai nghe Bluetooth',
+            price: '1,200,000đ',
+            image: 'https://picsum.photos/300/200?random=11',
+          },
+          {
+            name: 'Máy ảnh Canon',
+            price: '15,000,000đ',
+            image: 'https://picsum.photos/300/200?random=12',
+          },
+        ],
+      };
+
+      const tabs = document.querySelectorAll('.tab');
+      const productList = document.getElementById('product-list');
+      let currentTab = 'new';
+      let tabIndex = 0;
+      const tabKeys = ['new', 'bestseller', 'featured'];
+
+      // ========================= RENDER PRODUCTS =========================
+      function renderProducts(tab) {
+        productList.innerHTML = '';
+        productsData[tab].forEach((p) => {
+          productList.innerHTML += `
+          <div class="product-card">
+            <img src="${p.image}" alt="${p.name}">
+            <div class="product-info">
+              <h4>${p.name}</h4>
+              <p>${p.price}</p>
+            </div>
+          </div>
+        `;
+        });
+      }
+
+      // ========================= HANDLE TAB =========================
+      function setActiveTab(tab) {
+        tabs.forEach((t) => t.classList.remove('active'));
+        document
+          .querySelector(`.tab[data-tab="${tab}"]`)
+          .classList.add('active');
+        renderProducts(tab);
+        currentTab = tab;
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          setActiveTab(tab.dataset.tab);
+        });
+      });
+
+      // ========================= AUTO SWITCH TAB =========================
+      setInterval(() => {
+        tabIndex = (tabIndex + 1) % tabKeys.length;
+        setActiveTab(tabKeys[tabIndex]);
+      }, 3000);
+
+      // ========================= COUNTDOWN =========================
+      function startCountdown(duration) {
+        let timer = duration;
+        const countdownEl = document.getElementById('countdown');
+
+        setInterval(() => {
+          const hours = String(Math.floor(timer / 3600)).padStart(2, '0');
+          const minutes = String(Math.floor((timer % 3600) / 60)).padStart(
+            2,
+            '0'
+          );
+          const seconds = String(timer % 60).padStart(2, '0');
+
+          countdownEl.textContent = `${hours}:${minutes}:${seconds}`;
+
+          if (--timer < 0) {
+            timer = duration; // Reset khi hết giờ
+          }
+        }, 1000);
+      }
+
+      // Khởi chạy
+      setActiveTab('new');
+      startCountdown(3600); // 1 giờ
+    </script>
+  </body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sale Khuyến Mãi Khủng</title>
+    <style>
+      /* Reset cơ bản */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f4f4f4;
+        color: #333;
+        padding: 20px;
+      }
+
+      .sale-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px;
+        background-color: #ff5722; /* Màu cam nổi bật cho sale */
+        color: #fff;
+      }
+
+      .tabs {
+        display: flex;
+        flex-direction: column; /* Tabs dọc ở góc trái */
+        gap: 10px;
+      }
+
+      .tabs button {
+        padding: 10px 20px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      .tabs button:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        transform: translateX(5px); /* Hiệu ứng di chuyển nhẹ */
+      }
+
+      .tabs button.active {
+        background-color: #fff;
+        color: #ff5722;
+        font-weight: bold;
+      }
+
+      .countdown {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+      }
+
+      .countdown-title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .countdown-timer {
+        display: flex;
+        gap: 10px;
+      }
+
+      .countdown-item {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        min-width: 60px;
+      }
+
+      .countdown-item span {
+        display: block;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .countdown-item label {
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 box một hàng */
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .product-box {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        transition: box-shadow 0.3s, transform 0.3s;
+        cursor: pointer;
+      }
+
+      .product-box:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px); /* Hiệu ứng nâng lên */
+      }
+
+      .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 15px;
+      }
+
+      .product-name {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        color: #ff5722;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      /* Responsive cho mobile */
+      @media (max-width: 768px) {
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr); /* 2 box/hàng trên mobile */
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .tabs {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
+        .countdown {
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sale-section">
+      <div class="header">
+        <div class="tabs">
+          <button data-tab="new" class="active">Sản phẩm mới</button>
+          <button data-tab="bestselling">Sản phẩm bán chạy</button>
+          <button data-tab="featured">Sản phẩm nổi bật</button>
+        </div>
+        <div class="countdown">
+          <div class="countdown-title">Sale kết thúc sau:</div>
+          <div class="countdown-timer">
+            <div class="countdown-item">
+              <span id="days">00</span>
+              <label>Ngày</label>
+            </div>
+            <div class="countdown-item">
+              <span id="hours">00</span>
+              <label>Giờ</label>
+            </div>
+            <div class="countdown-item">
+              <span id="minutes">00</span>
+              <label>Phút</label>
+            </div>
+            <div class="countdown-item">
+              <span id="seconds">00</span>
+              <label>Giây</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="products-grid" id="products-grid"></div>
+    </div>
+
+    <script>
+      // Dữ liệu JSON cho từng tab (fake data)
+      const products = {
+        new: [
+          {
+            id: 1,
+            name: 'Sản phẩm mới 1',
+            price: '500.000đ',
+            image: 'https://via.placeholder.com/300x200?text=New+1',
+          },
+          {
+            id: 2,
+            name: 'Sản phẩm mới 2',
+            price: '600.000đ',
+            image: 'https://via.placeholder.com/300x200?text=New+2',
+          },
+          {
+            id: 3,
+            name: 'Sản phẩm mới 3',
+            price: '700.000đ',
+            image: 'https://via.placeholder.com/300x200?text=New+3',
+          },
+          {
+            id: 4,
+            name: 'Sản phẩm mới 4',
+            price: '800.000đ',
+            image: 'https://via.placeholder.com/300x200?text=New+4',
+          },
+          {
+            id: 5,
+            name: 'Sản phẩm mới 5',
+            price: '900.000đ',
+            image: 'https://via.placeholder.com/300x200?text=New+5',
+          },
+          {
+            id: 6,
+            name: 'Sản phẩm mới 6',
+            price: '1.000.000đ',
+            image: 'https://via.placeholder.com/300x200?text=New+6',
+          },
+        ],
+        bestselling: [
+          {
+            id: 7,
+            name: 'Bán chạy 1',
+            price: '400.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Best+1',
+          },
+          {
+            id: 8,
+            name: 'Bán chạy 2',
+            price: '450.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Best+2',
+          },
+          {
+            id: 9,
+            name: 'Bán chạy 3',
+            price: '500.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Best+3',
+          },
+          {
+            id: 10,
+            name: 'Bán chạy 4',
+            price: '550.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Best+4',
+          },
+          {
+            id: 11,
+            name: 'Bán chạy 5',
+            price: '600.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Best+5',
+          },
+          {
+            id: 12,
+            name: 'Bán chạy 6',
+            price: '650.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Best+6',
+          },
+        ],
+        featured: [
+          {
+            id: 13,
+            name: 'Nổi bật 1',
+            price: '1.200.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Featured+1',
+          },
+          {
+            id: 14,
+            name: 'Nổi bật 2',
+            price: '1.300.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Featured+2',
+          },
+          {
+            id: 15,
+            name: 'Nổi bật 3',
+            price: '1.400.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Featured+3',
+          },
+          {
+            id: 16,
+            name: 'Nổi bật 4',
+            price: '1.500.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Featured+4',
+          },
+          {
+            id: 17,
+            name: 'Nổi bật 5',
+            price: '1.600.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Featured+5',
+          },
+          {
+            id: 18,
+            name: 'Nổi bật 6',
+            price: '1.700.000đ',
+            image: 'https://via.placeholder.com/300x200?text=Featured+6',
+          },
+        ],
+      };
+
+      // Elements
+      const tabs = document.querySelectorAll('.tabs button');
+      const grid = document.getElementById('products-grid');
+      let currentTab = 'new';
+      let autoSwitchInterval;
+
+      // Hàm render sản phẩm
+      const renderProducts = (tab) => {
+        grid.innerHTML = ''; // Clear grid
+        products[tab].forEach((product) => {
+          const box = document.createElement('div');
+          box.classList.add('product-box');
+          box.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${product.price}</div>
+                    </div>
+                `;
+          grid.appendChild(box);
+        });
+      };
+
+      // Xử lý click tab
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentTab = tab.dataset.tab;
+          renderProducts(currentTab);
+          resetAutoSwitch(); // Reset interval khi click
+        });
+      });
+
+      // Tự động chuyển tab
+      const switchTab = () => {
+        const tabArray = Array.from(tabs);
+        const currentIndex = tabArray.findIndex((t) =>
+          t.classList.contains('active')
+        );
+        const nextIndex = (currentIndex + 1) % tabArray.length;
+        tabArray[nextIndex].click(); // Trigger click để switch
+      };
+
+      const startAutoSwitch = () => {
+        autoSwitchInterval = setInterval(switchTab, 3000);
+      };
+
+      const resetAutoSwitch = () => {
+        clearInterval(autoSwitchInterval);
+        startAutoSwitch();
+      };
+
+      // Countdown logic
+      const countdown = () => {
+        const endDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // Ví dụ: 7 ngày sau
+        const update = () => {
+          const now = new Date();
+          const diff = endDate - now;
+
+          if (diff <= 0) {
+            clearInterval(countdownInterval);
+            return;
+          }
+
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          document.getElementById('days').textContent = String(days).padStart(
+            2,
+            '0'
+          );
+          document.getElementById('hours').textContent = String(hours).padStart(
+            2,
+            '0'
+          );
+          document.getElementById('minutes').textContent = String(
+            minutes
+          ).padStart(2, '0');
+          document.getElementById('seconds').textContent = String(
+            seconds
+          ).padStart(2, '0');
+        };
+
+        update();
+        const countdownInterval = setInterval(update, 1000);
+      };
+
+      // Khởi động
+      renderProducts(currentTab);
+      startAutoSwitch();
+      countdown();
+    </script>
+  </body>
+</html>

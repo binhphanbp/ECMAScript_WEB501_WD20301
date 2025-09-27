@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sale Khuyến Mãi Khủng</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #ffe259, #ffa751);
+        color: #333;
+        padding: 30px;
+      }
+
+      .sale-container {
+        max-width: 1200px;
+        margin: auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        padding: 25px;
+        border: 4px solid #ff4757;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sale-container::before {
+        content: 'SALE OFF';
+        position: absolute;
+        top: -20px;
+        right: -60px;
+        background: #ff4757;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 10px 60px;
+        transform: rotate(45deg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #ff4757;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 15px;
+      }
+
+      .tab {
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        border: 2px solid transparent;
+      }
+
+      .tab:hover {
+        background: #ffecec;
+        border: 2px solid #ff4757;
+        color: #ff4757;
+      }
+
+      .tab.active {
+        background: #ff4757;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(255, 71, 87, 0.6);
+      }
+
+      .countdown {
+        font-size: 20px;
+        font-weight: bold;
+        background: #ff4757;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 30px;
+        box-shadow: 0 4px 12px rgba(255, 71, 87, 0.5);
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .product-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .sale-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #ff4757;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 6px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-info {
+        padding: 14px;
+        text-align: center;
+      }
+
+      .product-info h4 {
+        font-size: 17px;
+        margin-bottom: 8px;
+      }
+
+      .product-info p {
+        color: #ff4757;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      @media (max-width: 992px) {
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .products {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sale-container">
+      <div class="header">
+        <div class="tabs">
+          <div class="tab active" data-tab="new">Sản phẩm mới</div>
+          <div class="tab" data-tab="bestseller">Bán chạy</div>
+          <div class="tab" data-tab="featured">Nổi bật</div>
+        </div>
+        <div class="countdown" id="countdown">00:00:00</div>
+      </div>
+      <div class="products" id="product-list"></div>
+    </div>
+
+    <script>
+      const productsData = {
+        new: [
+          {
+            name: 'Áo thun nam',
+            price: '250,000đ',
+            image: 'https://picsum.photos/300/200?random=1',
+          },
+          {
+            name: 'Quần jeans nữ',
+            price: '450,000đ',
+            image: 'https://picsum.photos/300/200?random=2',
+          },
+          {
+            name: 'Giày sneaker',
+            price: '750,000đ',
+            image: 'https://picsum.photos/300/200?random=3',
+          },
+          {
+            name: 'Túi xách thời trang',
+            price: '350,000đ',
+            image: 'https://picsum.photos/300/200?random=4',
+          },
+        ],
+        bestseller: [
+          {
+            name: 'Áo sơ mi trắng',
+            price: '320,000đ',
+            image: 'https://picsum.photos/300/200?random=5',
+          },
+          {
+            name: 'Đồng hồ nam',
+            price: '1,250,000đ',
+            image: 'https://picsum.photos/300/200?random=6',
+          },
+          {
+            name: 'Giày cao gót',
+            price: '680,000đ',
+            image: 'https://picsum.photos/300/200?random=7',
+          },
+          {
+            name: 'Mũ lưỡi trai',
+            price: '150,000đ',
+            image: 'https://picsum.photos/300/200?random=8',
+          },
+        ],
+        featured: [
+          {
+            name: 'Laptop gaming',
+            price: '18,500,000đ',
+            image: 'https://picsum.photos/300/200?random=9',
+          },
+          {
+            name: 'Điện thoại iPhone',
+            price: '25,000,000đ',
+            image: 'https://picsum.photos/300/200?random=10',
+          },
+          {
+            name: 'Tai nghe Bluetooth',
+            price: '1,200,000đ',
+            image: 'https://picsum.photos/300/200?random=11',
+          },
+          {
+            name: 'Máy ảnh Canon',
+            price: '15,000,000đ',
+            image: 'https://picsum.photos/300/200?random=12',
+          },
+        ],
+      };
+
+      const tabs = document.querySelectorAll('.tab');
+      const productList = document.getElementById('product-list');
+      let tabIndex = 0;
+      const tabKeys = ['new', 'bestseller', 'featured'];
+
+      function renderProducts(tab) {
+        productList.innerHTML = '';
+        productsData[tab].forEach((p) => {
+          productList.innerHTML += `
+          <div class="product-card">
+            <span class="sale-badge">SALE</span>
+            <img src="${p.image}" alt="${p.name}">
+            <div class="product-info">
+              <h4>${p.name}</h4>
+              <p>${p.price}</p>
+            </div>
+          </div>
+        `;
+        });
+      }
+
+      function setActiveTab(tab) {
+        tabs.forEach((t) => t.classList.remove('active'));
+        document
+          .querySelector(`.tab[data-tab="${tab}"]`)
+          .classList.add('active');
+        renderProducts(tab);
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabIndex = tabKeys.indexOf(tab.dataset.tab);
+          setActiveTab(tab.dataset.tab);
+        });
+      });
+
+      setInterval(() => {
+        tabIndex = (tabIndex + 1) % tabKeys.length;
+        setActiveTab(tabKeys[tabIndex]);
+      }, 3000);
+
+      function startCountdown(duration) {
+        let timer = duration;
+        const countdownEl = document.getElementById('countdown');
+
+        setInterval(() => {
+          const hours = String(Math.floor(timer / 3600)).padStart(2, '0');
+          const minutes = String(Math.floor((timer % 3600) / 60)).padStart(
+            2,
+            '0'
+          );
+          const seconds = String(timer % 60).padStart(2, '0');
+
+          countdownEl.textContent = `${hours}:${minutes}:${seconds}`;
+
+          if (--timer < 0) timer = duration;
+        }, 1000);
+      }
+
+      setActiveTab('new');
+      startCountdown(3600);
+    </script>
+  </body>
+</html>
