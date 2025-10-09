@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặt hàng thành công</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="order-success card">
+      <h2>🎉 Đặt hàng thành công!</h2>
+
+      <div class="order-info">
+        <p><strong>Mã đơn hàng:</strong> <span id="order-id">#123456</span></p>
+        <p>
+          <strong>Ngày đặt:</strong> <span id="order-date">29/09/2025</span>
+        </p>
+      </div>
+
+      <div class="shipping-info">
+        <h3>Thông tin giao hàng</h3>
+        <p id="shipping-name"></p>
+        <p id="shipping-phone"></p>
+        <p id="shipping-address"></p>
+        <p id="shipping-note"></p>
+      </div>
+
+      <div class="order-details">
+        <h3>Chi tiết đơn hàng</h3>
+        <div id="order-detail-items"></div>
+        <p>
+          <strong>Phí vận chuyển:</strong>
+          <span id="order-shipping">20,000 ₫</span>
+        </p>
+        <p>
+          <strong>Phương thức thanh toán:</strong>
+          <span id="order-payment">COD</span>
+        </p>
+        <p>
+          <strong>Tổng cộng:</strong> <span id="order-total">200,000 ₫</span>
+        </p>
+      </div>
+
+      <div class="order-actions">
+        <a href="products.html" class="btn">Tiếp tục mua sắm</a>
+      </div>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

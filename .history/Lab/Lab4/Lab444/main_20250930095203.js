@@ -1,0 +1,190 @@
+/* ==========================================================
+   1. VARIABLES & RESET (NEW COLORS)
+   ========================================================== */
+:root {
+    --primary-color: #1B4F72; /* Xanh Navy Đậm (Nút hành động) */
+    --primary-dark: #0A3450; /* Xanh Gần Đen (Tổng tiền) */
+    --text-color: #34495e; /* Xám đậm */
+    --background-color: #f8f9fa; /* Nền trang trắng/xám rất nhạt */
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --spacing-md: 20px;
+    --border-radius: 12px;
+    --red-sale: #E74C3C; /* Giữ màu đỏ cho giá sale */
+    --blue-info: #2c3e50; /* Xám xanh đậm cho tiêu đề khối */
+    --active-bg-light: #e6f7ff; /* Nền sáng khi active (voucher) */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+/* ==========================================================
+   2. LAYOUT CHÍNH (Giữ nguyên)
+   ========================================================== */
+.main-layout {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 30px;
+    align-items: flex-start; 
+}
+
+.content-box {
+    padding: var(--spacing-md);
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+}
+
+h1.page-title {
+    font-size: 1.8rem;
+    color: var(--primary-dark); /* Tiêu đề chính đậm */
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+h1.page-title svg {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--blue-info); /* Tiêu đề khối màu xanh đậm */
+}
+
+/* ==========================================================
+   3. BUTTONS
+   ========================================================== */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(27, 79, 114, 0.3); /* Shadow mới */
+}
+
+.change-address-btn {
+    color: var(--primary-color); /* Link màu primary */
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* ==========================================================
+   4. CART PAGE SPECIFIC
+   ========================================================== */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+/* ... (Giữ nguyên styling chi tiết sản phẩm) ... */
+.item-subtotal {
+    width: 80px;
+    text-align: right;
+    color: var(--red-sale);
+}
+.delete-btn {
+    color: #c0392b;
+}
+
+/* Voucher Scroll */
+.voucher-list {
+    margin-bottom: 20px;
+    max-height: 140px; 
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--border-color);
+}
+.voucher-item {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.voucher-item.active {
+    border-color: var(--primary-color);
+    background-color: var(--active-bg-light); /* Nền sáng active mới */
+    font-weight: bold;
+}
+
+/* Tổng thanh toán */
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    padding-top: 15px;
+    margin-bottom: 20px;
+}
+.summary-total h3:first-child { 
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 0; 
+    line-height: 1.2; 
+    font-weight: 600;
+}
+.summary-total h3:last-child { 
+    font-size: 2rem; 
+    color: var(--primary-dark);
+}
+
+/* Ẩn dòng Phí Vận Chuyển trong Cart */
+.cart-shipping-line {
+    display: none; 
+}
+
+
+/* ==========================================================
+   5. CHECKOUT PAGE SPECIFIC (Giữ nguyên form/input styling)
+   ========================================================== */
+/* Phương thức Thanh toán (trong cột phải) */
+.payment-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+.payment-section h2 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+/* ... (Modal styling giữ nguyên) ... */

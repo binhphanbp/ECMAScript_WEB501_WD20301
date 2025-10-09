@@ -1,0 +1,302 @@
+/* ==========================================================
+   1. VARIABLES & RESET 
+   ========================================================== */
+:root {
+  --primary-color: #1b4f72; /* Xanh Navy Đậm */
+  --primary-dark: #0a3450; /* Xanh Gần Đen */
+  --text-color: #34495e; /* Xám đậm */
+  --background-color: #f8f9fa; /* Nền trang trắng/xám rất nhạt */
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --spacing-md: 20px;
+  --border-radius: 12px;
+  --red-sale: #e74c3c; /* Giá sale */
+  --blue-info: #2c3e50; /* Tiêu đề khối */
+  --active-bg-light: #e6f7ff; /* Nền sáng khi active */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+/* ==========================================================
+   2. TYPOGRAPHY & HEADERS
+   ========================================================== */
+.page-title {
+  font-size: 1.8rem;
+  color: var(--primary-dark);
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+}
+.page-title svg {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--blue-info);
+}
+
+/* ==========================================================
+   3. LAYOUT & BOXES
+   ========================================================== */
+.main-layout {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.content-box {
+  padding: var(--spacing-md);
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+}
+
+/* ==========================================================
+   4. BUTTONS & FORMS
+   ========================================================== */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(27, 79, 114, 0.3);
+}
+
+.change-address-btn {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+/* ==========================================================
+   5. CART PAGE SPECIFIC (CẢI THIỆN LỚN)
+   ========================================================== */
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+}
+.cart-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 50px; /* Info | Quantity | Subtotal | Delete */
+  gap: 15px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.item-img-placeholder {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  overflow: hidden;
+}
+.item-details strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--blue-info);
+  margin-bottom: 4px;
+}
+.item-details p {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+/* Nút Cộng/Trừ làm đẹp hơn */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  height: 38px;
+}
+.quantity-control button {
+  background: none;
+  border: none;
+  padding: 0 12px;
+  height: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--primary-color);
+  transition: background-color 0.2s;
+}
+.quantity-control button:hover {
+  background-color: var(--active-bg-light);
+}
+.quantity-control input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+}
+.item-subtotal {
+  text-align: right;
+  font-weight: bold;
+  color: var(--red-sale);
+}
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--red-sale);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.delete-btn:hover {
+  opacity: 1;
+}
+
+/* Voucher List Cải tiến */
+.voucher-list {
+  margin-bottom: 20px;
+  /* Giới hạn chiều cao cho scroll thông minh (tối đa 3 voucher + padding) */
+  max-height: calc(3 * 60px + 10px);
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--border-color);
+}
+.voucher-item {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background-color: #f7f9fb;
+}
+.voucher-item.active {
+  border-color: var(--primary-color);
+  background-color: var(--active-bg-light);
+  font-weight: bold;
+  box-shadow: 0 0 0 2px var(--primary-color) inset;
+}
+.voucher-item strong {
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+}
+
+/* ==========================================================
+   6. CHECKOUT & VIEW ORDER SHARED
+   ========================================================== */
+.summary-details .summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-size: 0.95rem;
+}
+.summary-total {
+  border-top: none;
+  margin-bottom: 0;
+}
+.final-total-line {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.total-price {
+  color: var(--red-sale);
+  font-size: 1.5rem;
+}
+
+/* View Order / Modal Style */
+.order-details-display h3 {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-top: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border-color);
+}
+.info-group p {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.order-item-summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  border-bottom: 1px dotted var(--border-color);
+}
+.order-id-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--red-sale);
+}
+.order-success-title {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+}

@@ -1,0 +1,291 @@
+/* ==========================================================
+   1. VARIABLES & RESET 
+   ========================================================== */
+:root {
+  --primary-color: #1b4f72; /* Xanh Navy Đậm */
+  --primary-dark: #0a3450; /* Xanh Gần Đen */
+  --text-color: #34495e; /* Xám đậm */
+  --background-color: #f8f9fa; /* Nền trang trắng/xám rất nhạt */
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --spacing-lg: 30px;
+  --spacing-md: 20px;
+  --spacing-sm: 15px;
+  --border-radius: 12px;
+  --red-sale: #e74c3c; /* Giá sale */
+  --blue-info: #2c3e50; /* Tiêu đề khối */
+  --active-bg-light: #e6f7ff; /* Nền sáng khi active */
+  --border-faint: 1px solid rgba(0, 0, 0, 0.08); /* Đường kẻ ngăn cách mờ */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+/* ẨN NÚT TĂNG GIẢM MẶC ĐỊNH CHO INPUT TYPE=NUMBER */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/* ==========================================================
+   2. LAYOUT & BOXES
+   ========================================================== */
+.main-layout {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+}
+
+.content-box {
+  padding: var(--spacing-md);
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+}
+.checkout-page .content-box {
+  padding: var(--spacing-lg); /* Tăng padding để trông thoáng hơn */
+}
+.checkout-page .summary-box {
+  padding: var(--spacing-md);
+}
+
+h1.page-title {
+  font-size: 1.8rem;
+  color: var(--primary-dark);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+}
+h1.page-title svg {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--blue-info);
+}
+
+/* ==========================================================
+   3. BUTTONS & FORMS
+   ========================================================== */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color); /* Khôi phục Xanh Navy */
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(27, 79, 114, 0.3);
+}
+
+.change-address-btn {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-sm);
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+/* ==========================================================
+   4. CART PAGE SPECIFIC 
+   ========================================================== */
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+}
+.cart-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 50px;
+  gap: var(--spacing-sm);
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.item-img-placeholder {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  overflow: hidden;
+}
+
+/* Nút Cộng/Trừ làm đẹp hơn */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  height: 38px;
+  width: 100px;
+}
+.quantity-control button {
+  background: none;
+  border: none;
+  padding: 0 10px;
+  height: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--primary-color);
+  transition: background-color 0.2s;
+}
+.quantity-control button:hover {
+  background-color: var(--active-bg-light);
+}
+.quantity-control input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+}
+.item-subtotal {
+  text-align: right;
+  font-weight: bold;
+  color: var(--red-sale);
+}
+
+/* Voucher List Cải tiến */
+.voucher-list {
+  margin-bottom: var(--spacing-md);
+  max-height: calc(3 * 70px + 10px);
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--border-color);
+}
+.voucher-item {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background-color: #f7f9fb;
+}
+.voucher-item.active {
+  border-color: var(--primary-color);
+  background-color: var(--active-bg-light);
+  font-weight: bold;
+  box-shadow: 0 0 0 2px var(--primary-color) inset;
+}
+.voucher-item strong {
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+}
+
+/* ==========================================================
+   5. CART & CHECKOUT SHARED SUMMARY (Đã Thêm Đường kẻ mờ)
+   ========================================================== */
+.summary-box h2 {
+  margin-bottom: var(--spacing-sm);
+}
+.summary-details {
+  padding-bottom: var(--spacing-sm);
+  border-bottom: var(--border-faint); /* Đường kẻ ngăn cách khối chính */
+  margin-bottom: var(--spacing-md);
+}
+.summary-details .summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0; /* Khoảng cách giữa các dòng */
+  font-size: 0.95rem;
+}
+.summary-details .summary-line.red {
+  color: var(--red-sale);
+  font-weight: 600;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+.summary-total h3:last-child {
+  font-size: 2rem;
+  color: var(--primary-dark); /* Khôi phục màu Xanh Navy */
+}
+
+/* Phần Mã giảm giá và Phương thức thanh toán */
+.payment-section,
+.voucher-list-wrapper {
+  padding-top: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  border-top: var(--border-faint); /* Đường kẻ ngăn cách khối */
+  margin-bottom: var(--spacing-md);
+}
+
+/* VIEW ORDER */
+.order-success-title svg {
+  color: var(--primary-color) !important; /* Đảm bảo màu xanh Navy */
+}

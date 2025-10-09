@@ -1,0 +1,92 @@
+<!-- cart.html -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ Hàng - Website Bán Hàng Hiện Đại</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Website Bán Hàng</h1>
+        <nav>
+          <a href="#">Trang Chủ</a>
+          <a href="products.html">Sản Phẩm</a>
+          <a href="cart.html">Giỏ Hàng</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="cart-page">
+      <div class="container">
+        <div class="cart-left">
+          <h2>Thông Tin Giỏ Hàng</h2>
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th>Sản Phẩm</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th>Tổng</th>
+                <th>Hành Động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Sản phẩm mẫu, sẽ dùng JS để populate -->
+              <tr>
+                <td>
+                  <img src="placeholder.jpg" alt="Sản phẩm 1" />
+                  <span>Sản Phẩm 1</span>
+                </td>
+                <td>500.000 VNĐ</td>
+                <td><input type="number" value="1" min="1" /></td>
+                <td>500.000 VNĐ</td>
+                <td><button class="remove-btn">Xóa</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="placeholder.jpg" alt="Sản phẩm 2" />
+                  <span>Sản Phẩm 2</span>
+                </td>
+                <td>300.000 VNĐ</td>
+                <td><input type="number" value="2" min="1" /></td>
+                <td>600.000 VNĐ</td>
+                <td><button class="remove-btn">Xóa</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="products.html" class="continue-shopping"
+            >Mua Thêm Sản Phẩm</a
+          >
+        </div>
+
+        <div class="cart-right">
+          <h2>Tóm Tắt Đơn Hàng</h2>
+          <div class="summary-item">
+            <span>Tạm Tính</span>
+            <span>1.100.000 VNĐ</span>
+          </div>
+          <div class="summary-item">
+            <span>Voucher</span>
+            <input type="text" placeholder="Nhập mã voucher" />
+          </div>
+          <div class="summary-item total">
+            <span>Tổng Đơn Hàng</span>
+            <span>1.100.000 VNĐ</span>
+          </div>
+          <a href="checkout.html" class="checkout-btn">Tiếp Tục Đặt Hàng</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Website Bán Hàng. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

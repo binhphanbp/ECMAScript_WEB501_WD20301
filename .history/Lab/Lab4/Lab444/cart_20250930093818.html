@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng của bạn</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="page-title">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z" />
+          <path d="M3 6h18" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        Giỏ Hàng Của Bạn
+      </h1>
+
+      <div class="main-layout">
+        <section class="content-box">
+          <h2>Các Sản Phẩm Trong Giỏ</h2>
+          <div id="cart-items-list" class="cart-items-list"></div>
+
+          <a
+            href="index.html"
+            class="change-address-btn"
+            style="margin-top: 20px"
+          >
+            ← Mua thêm sản phẩm (Trở về trang Danh sách Sản Phẩm)
+          </a>
+        </section>
+
+        <section class="content-box summary-box">
+          <h2>Tóm Tắt Đơn Hàng</h2>
+          <div class="summary-details">
+            <div class="summary-line">
+              <span>Tạm tính (<span id="item-count">0</span> sản phẩm)</span>
+              <span id="subtotal">0₫</span>
+            </div>
+            <div class="summary-line">
+              <span>Phí vận chuyển</span>
+              <span id="shipping-fee-cart">20.000₫</span>
+            </div>
+          </div>
+
+          <h2>Chọn Mã Giảm Giá</h2>
+          <div class="voucher-list">
+            <div class="voucher-item active" data-code="SALE10">
+              <strong>SALE10</strong><br />Giảm 10% (Tối đa 70.000₫)
+            </div>
+            <div class="voucher-item" data-code="GIAM50K">
+              <strong>GIAM50K</strong><br />Giảm 50.000₫ cho đơn hàng trên
+              300.000₫
+            </div>
+            <div class="voucher-item" data-code="FREESHIP">
+              <strong>FREESHIP</strong><br />Miễn phí vận chuyển cho mọi đơn
+              hàng
+            </div>
+            <div class="voucher-item" data-code="WELCOME">
+              <strong>WELCOME</strong><br />Giảm 15% cho khách hàng mới
+            </div>
+            <div class="voucher-item" data-code="HAPPYDAY">
+              <strong>HAPPYDAY</strong><br />Giảm 30.000₫ cho đơn trên 500.000₫
+            </div>
+          </div>
+
+          <div class="summary-total">
+            <h3>Tổng thanh toán</h3>
+            <h3 id="grand-total">0₫</h3>
+          </div>
+
+          <a href="checkout.html" class="btn btn-primary">
+            Tiếp Tục Đặt Hàng
+          </a>
+        </section>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>

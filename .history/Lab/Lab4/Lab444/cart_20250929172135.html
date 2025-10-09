@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="cart">
+      <!-- LEFT: Giỏ hàng -->
+      <section id="cart-products" class="card">
+        <h2>Giỏ hàng của bạn</h2>
+        <!-- sản phẩm sẽ render bằng JS -->
+        <div id="cart-items"></div>
+        <div class="cart-footer">
+          <a href="products.html" class="back-link">← Mua thêm sản phẩm</a>
+        </div>
+      </section>
+
+      <!-- RIGHT: Tóm tắt -->
+      <aside id="cart-summary" class="card">
+        <h2>Tóm tắt đơn hàng</h2>
+        <div class="summary-row">
+          <span>Tạm tính</span><span id="subtotal-amount">0 ₫</span>
+        </div>
+
+        <div class="voucher-row">
+          <input id="voucher-input" type="text" placeholder="Nhập mã voucher" />
+          <button id="apply-voucher-btn" type="button">Áp dụng</button>
+          <button id="toggle-voucher-list-btn" type="button">▼</button>
+          <div
+            id="voucher-dropdown"
+            class="voucher-dropdown"
+            style="display: none"
+          ></div>
+        </div>
+
+        <div class="summary-row">
+          <span>Giảm giá</span><span id="discount-amount">0 ₫</span>
+        </div>
+        <div class="summary-row">
+          <span>Phí vận chuyển</span><span id="shipping-amount">0 ₫</span>
+        </div>
+        <div class="summary-row total">
+          <span>Tổng cộng</span><span id="total-amount">0 ₫</span>
+        </div>
+        <button id="checkout-btn">Tiếp tục đặt hàng</button>
+      </aside>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

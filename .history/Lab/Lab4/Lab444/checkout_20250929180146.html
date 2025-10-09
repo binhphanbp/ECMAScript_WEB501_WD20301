@@ -1,0 +1,72 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh Toán</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Thanh Toán Đơn Hàng</h1>
+    </header>
+    <main class="container">
+      <section class="checkout-left">
+        <h2>Thông Tin Giao Hàng</h2>
+        <form id="shipping-form">
+          <label for="address-select">Thay Đổi Địa Chỉ:</label>
+          <select id="address-select">
+            <option value="">Chọn địa chỉ</option>
+          </select>
+          <label for="name">Tên:</label>
+          <input type="text" id="name" required />
+          <label for="phone">Điện Thoại:</label>
+          <input type="tel" id="phone" required />
+          <label for="address">Địa Chỉ:</label>
+          <input type="text" id="address" required />
+          <label for="note">Ghi Chú:</label>
+          <textarea id="note"></textarea>
+        </form>
+      </section>
+      <aside class="checkout-right">
+        <h2>Tóm Tắt Đơn Hàng</h2>
+        <div id="order-summary"></div>
+        <div class="summary-item">
+          <span>Phí Vận Chuyển:</span>
+          <span id="shipping-fee">50,000 VND</span>
+          <!-- Giả sử phí cố định -->
+        </div>
+        <div class="summary-item">
+          <span>Phương Thức Thanh Toán:</span>
+          <div class="payment-methods">
+            <label
+              ><input type="radio" name="payment" value="COD" checked /> Thanh
+              toán khi nhận hàng (COD)</label
+            >
+            <label
+              ><input type="radio" name="payment" value="Bank" /> Chuyển khoản
+              ngân hàng</label
+            >
+            <label
+              ><input type="radio" name="payment" value="Card" /> Thẻ tín
+              dụng</label
+            >
+          </div>
+        </div>
+        <div class="summary-item total">
+          <span>Tổng Đơn Hàng:</span>
+          <span id="checkout-total">0 VND</span>
+        </div>
+        <button id="place-order" class="btn btn-primary">
+          Tiếp Tục Đặt Hàng
+        </button>
+      </aside>
+    </main>
+    <section id="order-confirmation" class="hidden">
+      <h2>Thông Tin Đơn Hàng</h2>
+      <div id="confirmation-details"></div>
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>
