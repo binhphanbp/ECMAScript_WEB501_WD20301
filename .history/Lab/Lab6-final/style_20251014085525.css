@@ -1,0 +1,157 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+/* === BỐ CỤC 2 CỘT === */
+.app-layout {
+  display: flex;
+  gap: 30px; /* Khoảng cách giữa 2 cột */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* === CỘT TRÁI - SIDEBAR === */
+.sidebar {
+  width: 320px;
+  flex-shrink: 0; /* Không co lại khi màn hình hẹp */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  height: fit-content; /* Chiều cao vừa với nội dung */
+}
+
+.sidebar-header {
+  background-color: #1a2c5a;
+  color: white;
+  padding: 18px 20px;
+  border-radius: 12px 12px 0 0;
+  margin: 0;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0 20px 20px 20px;
+  margin: 0;
+}
+
+.sidebar-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar-list li:last-child {
+  border-bottom: none;
+}
+
+.sidebar-list .player-info p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+/* === CỘT PHẢI - NỘI DUNG CHÍNH === */
+.main-content {
+  flex-grow: 1; /* Lấp đầy không gian còn lại */
+}
+
+/* Các style cũ vẫn giữ nguyên */
+h1,
+h2 {
+  color: #1a2c5a;
+}
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+button,
+select,
+input {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  background-color: #e9eff5;
+}
+.controls button.active {
+  background-color: #1a2c5a; /* Màu nền xanh đậm */
+  color: white; /* Màu chữ trắng */
+  border-color: #1a2c5a; /* Màu viền trùng màu nền */
+}
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+.player-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  border: 2px solid transparent;
+}
+.player-card:hover {
+  transform: translateY(-5px);
+  border-color: #0056b3;
+}
+.player-card .jersey-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f39c12;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 auto 10px;
+}
+.player-card h3 {
+  margin: 0 0 5px 0;
+  color: #1a2c5a;
+}
+.player-card p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+.player-card .actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.actions button {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

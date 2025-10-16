@@ -1,0 +1,92 @@
+/* style.css */
+
+/* --- Cài đặt chung --- */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+/* --- Lưới hiển thị cầu thủ --- */
+.player-grid {
+  display: grid;
+  gap: 1.5rem;
+  /* Giao diện đáp ứng: tự động điều chỉnh số cột theo độ rộng màn hình */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* --- Thẻ thông tin cầu thủ --- */
+.player-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  text-align: center;
+}
+
+.player-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.player-card__jersey {
+  background-color: #fb923c;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+}
+
+.player-card__name {
+  font-weight: 800;
+  font-size: 1.125rem;
+  color: #1f2937;
+  margin: 0;
+}
+
+.player-card__position {
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* --- Nút điều khiển --- */
+.controls {
+  margin-top: 2rem;
+}
+
+#btnFindTopScorer {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#btnFindTopScorer:hover {
+  background-color: #1d4ed8;
+}

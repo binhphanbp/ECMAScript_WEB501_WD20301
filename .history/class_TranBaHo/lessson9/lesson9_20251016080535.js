@@ -115,10 +115,6 @@ function greet() {
 }
 
 // Function Expression
-const greet2 = function () {};
-
-// Arrow Func
-const greet3 = () => {};
 
 //  Tổng số bàn thắng toàn đội
 const totalGoals = () => players.reduce((sum, p) => sum + p.goals, 0);

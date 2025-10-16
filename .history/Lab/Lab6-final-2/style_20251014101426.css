@@ -1,0 +1,188 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.app-layout {
+  display: flex;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* --- CỘT TRÁI - SIDEBAR --- */
+.sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+}
+
+.sidebar-header {
+  background-color: #1a2c5a;
+  color: white;
+  padding: 18px 20px;
+  border-radius: 12px 12px 0 0;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 10px 20px 20px 20px;
+  margin: 0;
+}
+
+.sidebar-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar-list li:last-child {
+  border-bottom: none;
+}
+
+.sidebar-list .player-info strong {
+  color: #1a2c5a;
+}
+
+.sidebar-list .player-info p {
+  margin: 4px 0 0 0;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+/* --- CỘT PHẢI - NỘI DUNG CHÍNH --- */
+.main-content {
+  flex-grow: 1;
+}
+
+h1,
+h2 {
+  color: #1a2c5a;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button,
+select,
+input[type='text'],
+input[type='number'] {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+button:hover {
+  background-color: #e9eff5;
+}
+
+.controls button.active {
+  background-color: #1a2c5a;
+  color: white;
+  border-color: #1a2c5a;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.player-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, border-color 0.2s;
+  border: 2px solid transparent;
+}
+
+.player-card:hover {
+  transform: translateY(-5px);
+  border-color: #0056b3;
+}
+
+.player-card .jersey-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f39c12;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 auto 10px;
+}
+
+.player-card h3 {
+  margin: 0 0 5px 0;
+  color: #1a2c5a;
+}
+.player-card p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+.player-card .actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.actions button {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.separator {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 30px 0;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}

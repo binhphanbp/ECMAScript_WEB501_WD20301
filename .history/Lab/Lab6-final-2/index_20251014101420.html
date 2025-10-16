@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Đội Hình</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Danh sách Cầu thủ</h2>
+        </div>
+        <ul id="sidebar-player-list" class="sidebar-list"></ul>
+      </aside>
+
+      <main class="main-content">
+        <h1>Tổng quan Đội hình</h1>
+        <div class="controls">
+          <button id="btn-all">Tất cả</button>
+          <button id="btn-forwards">Tiền Đạo</button>
+          <button id="btn-golden-ball">Quả Bóng Vàng</button>
+          <button id="btn-top-scorer">Cầu thủ nhiều bàn thắng nhất</button>
+          <button id="btn-sort-by-name">Sắp xếp theo tên</button>
+        </div>
+
+        <div id="player-list" class="player-grid"></div>
+
+        <hr class="separator" />
+
+        <h2>Thêm cầu thủ mới</h2>
+        <form id="add-player-form">
+          <input type="text" id="name" placeholder="Tên" required />
+          <input type="number" id="birthYear" placeholder="Năm sinh" required />
+          <input type="text" id="hometown" placeholder="Quê quán" required />
+          <input type="number" id="jerseyNumber" placeholder="Số áo" required />
+          <select id="position" required>
+            <option value="Tiền đạo">Tiền đạo</option>
+            <option value="Tiền vệ">Tiền vệ</option>
+            <option value="Hậu vệ">Hậu vệ</option>
+            <option value="Thủ môn">Thủ môn</option>
+          </select>
+          <input type="number" id="goals" placeholder="Số bàn thắng" required />
+          <label class="checkbox-label">
+            <input type="checkbox" id="isBallonDorWinner" /> Quả bóng vàng
+          </label>
+          <button type="submit">Thêm cầu thủ</button>
+        </form>
+      </main>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

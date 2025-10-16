@@ -1,0 +1,131 @@
+/* ... Giữ nguyên các CSS cũ ... */
+
+/* Thêm CSS mới ở cuối file */
+.controls-container {
+  background: var(--surface-color);
+  padding: 15px 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-wrapper i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--light-text-color);
+}
+
+#search-input {
+  width: 100%;
+  padding: 12px 20px 12px 45px;
+  border-radius: 25px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-label {
+  font-weight: 500;
+  color: var(--light-text-color);
+  margin-right: 10px;
+}
+
+.sort-btn {
+  background: #e9ecef;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.sort-btn:hover {
+  background-color: #ced4da;
+}
+
+.sort-btn.active {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+/* Thêm icon add và style cho cầu thủ trong đội hình */
+#player-list li.in-roster {
+  background-color: #e8f5e9; /* Màu xanh lá cây nhạt */
+  opacity: 0.7;
+}
+
+#player-list li.in-roster .player-info p:first-child {
+  font-style: italic;
+}
+
+.player-actions .roster-toggle {
+  color: #28a745; /* Màu xanh lá */
+  transition: transform 0.3s, color 0.3s;
+}
+
+.player-actions .roster-toggle:hover {
+  transform: scale(1.2);
+}
+
+.player-actions .roster-toggle.in-roster {
+  color: #dc3545; /* Màu đỏ */
+}
+
+/* Thêm thông tin thẻ phạt trên card */
+.player-card .card-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.card-info span {
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+}
+.card-info .yellow {
+  background-color: #ffc107;
+}
+.card-info .red {
+  background-color: #dc3545;
+}
+
+/* CSS cho modal */
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+.form-row .form-group {
+  flex: 1;
+}

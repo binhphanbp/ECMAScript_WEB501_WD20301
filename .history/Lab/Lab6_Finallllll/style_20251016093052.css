@@ -1,0 +1,350 @@
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5a623;
+  --background-color: #f4f7fc;
+  --surface-color: #ffffff;
+  --text-color: #333333;
+  --light-text-color: #888888;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --border-radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--surface-color);
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.player-list-container {
+  flex: 1;
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  height: fit-content;
+}
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+.add-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+.add-btn:hover {
+  background-color: #357abd;
+}
+#player-list {
+  list-style-type: none;
+}
+#player-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s, opacity 0.3s;
+}
+#player-list li:last-child {
+  border-bottom: none;
+}
+#player-list li:hover {
+  background-color: #f9f9f9;
+}
+.player-info p:first-child {
+  font-weight: 500;
+}
+.player-info p:last-child {
+  font-size: 0.9rem;
+  color: var(--light-text-color);
+}
+.player-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.player-actions i {
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--light-text-color);
+  transition: color 0.3s, transform 0.3s;
+}
+.player-actions .fa-edit:hover {
+  color: var(--primary-color);
+  transform: scale(1.2);
+}
+.player-actions .fa-trash-alt:hover {
+  color: #e74c3c;
+  transform: scale(1.2);
+}
+.main-content {
+  flex: 3;
+}
+.controls-container {
+  background: var(--surface-color);
+  padding: 15px 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+.search-wrapper i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--light-text-color);
+}
+#search-input {
+  width: 100%;
+  padding: 12px 20px 12px 45px;
+  border-radius: 25px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+}
+#search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.filter-label {
+  font-weight: 500;
+  color: var(--light-text-color);
+  margin-right: 10px;
+}
+.filter-btn {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.filter-btn:hover {
+  background-color: #e8f0fe;
+  border-color: var(--primary-color);
+}
+.filter-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+.sort-btn {
+  background: #e9ecef;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.sort-btn:hover {
+  background-color: #ced4da;
+}
+.sort-btn.active {
+  background-color: var(--secondary-color);
+  color: white;
+}
+#player-list li.in-roster {
+  background-color: #e8f5e9;
+  opacity: 0.8;
+}
+#player-list li.in-roster .player-info p:first-child {
+  font-style: italic;
+  color: #1e7e34;
+}
+.player-actions .roster-toggle {
+  color: #28a745;
+}
+.player-actions .roster-toggle.in-roster {
+  color: #dc3545;
+}
+.player-actions .roster-toggle:hover {
+  transform: scale(1.25);
+}
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+.player-card {
+  background: var(--surface-color);
+  padding: 30px;
+  padding-bottom: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.player-card .shirt-number {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--secondary-color);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.player-card .golden-ball-icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+}
+.player-card h3 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+.player-card .position {
+  color: var(--light-text-color);
+  margin-bottom: 15px;
+}
+.player-card .stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.9rem;
+}
+.player-card .card-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+}
+.card-info span {
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+}
+.card-info .yellow {
+  background-color: #ffc107;
+}
+.card-info .red {
+  background-color: #dc3545;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 500px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+.form-row .form-group {
+  flex: 1;
+}
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+.modal-actions button {
+  padding: 10px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.btn-save {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-cancel {
+  background-color: #f1f1f1;
+  color: var(--text-color);
+}

@@ -109,16 +109,9 @@ const findTopScorer = () => {
   return players.filter((p) => p.goals === maxGoals);
 };
 
-// Funtion Declaration
 function greet() {
   console.log('Hello, World!');
 }
-
-// Function Expression
-const greet2 = function () {};
-
-// Arrow Func
-const greet3 = () => {};
 
 //  Tổng số bàn thắng toàn đội
 const totalGoals = () => players.reduce((sum, p) => sum + p.goals, 0);
