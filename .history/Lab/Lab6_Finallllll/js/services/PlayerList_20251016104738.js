@@ -1,3 +1,4 @@
+// js/services/PlayerList.js
 import { FORMATIONS } from '../config/formations.js';
 import { Player } from '../models/PlayerModels.js';
 
@@ -170,6 +171,7 @@ export default class PlayerList {
       }
     }
 
+    // Handle sorting
     const [sortBy, dir] = state.sort.split('-');
     const positionOrder = {
       'Thủ Môn': 1,
@@ -210,7 +212,7 @@ export default class PlayerList {
                                   : 'fa-plus-circle'
                               } roster-toggle"></i>`
                             : ''
-                        }  <i class="fas fa-trash-alt"></i> </div>
+                        } <i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i> </div>
                     </li>`;
       })
       .join('');

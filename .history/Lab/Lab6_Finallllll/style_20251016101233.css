@@ -1,6 +1,5 @@
 :root {
   --primary-color: #4a90e2;
-  --secondary-color: #f5a623;
   --background-color: #f4f7fc;
   --surface-color: #ffffff;
   --text-color: #333333;
@@ -11,25 +10,26 @@
   --pitch-color: #2a9d8f;
   --pitch-line-color: rgba(255, 255, 255, 0.3);
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
 }
+
 header {
   background: var(--surface-color);
   padding: 20px 40px;
   border-bottom: 1px solid var(--border-color);
   text-align: center;
 }
-.hidden {
-  display: none !important;
-}
+
 .container {
   display: flex;
   gap: 30px;
@@ -38,7 +38,6 @@ header {
   margin: 0 auto;
 }
 
-/* Cột trái */
 .player-list-container {
   flex: 1;
   max-width: 350px;
@@ -48,6 +47,7 @@ header {
   box-shadow: var(--shadow);
   height: fit-content;
 }
+
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -56,6 +56,7 @@ header {
   padding-bottom: 15px;
   border-bottom: 1px solid var(--border-color);
 }
+
 .add-btn {
   background-color: var(--primary-color);
   color: white;
@@ -65,11 +66,11 @@ header {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 #player-list {
   list-style-type: none;
-  max-height: 65vh;
-  overflow-y: auto;
 }
+
 #player-list li {
   display: flex;
   justify-content: space-between;
@@ -78,128 +79,77 @@ header {
   border-bottom: 1px solid var(--border-color);
   transition: background-color 0.3s, opacity 0.3s;
 }
+
 #player-list li.in-roster {
   background-color: #e8f5e9;
 }
+
 #player-list li.disabled {
   opacity: 0.5;
   background-color: #f8f9fa;
   cursor: not-allowed;
 }
+
 .player-info p:first-child {
   font-weight: 500;
 }
+
 .player-info p:last-child {
   font-size: 0.9rem;
   color: var(--light-text-color);
 }
+
 .player-actions {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .player-actions i {
   cursor: pointer;
   font-size: 1.1rem;
   color: var(--light-text-color);
   transition: all 0.2s;
 }
+
 .player-actions .fa-edit:hover,
 .player-actions .fa-trash-alt:hover {
   transform: scale(1.2);
 }
+
 .player-actions .roster-toggle {
   color: #28a745;
 }
+
 .player-actions .roster-toggle.in-roster {
   color: #dc3545;
 }
 
-/* Cột phải */
+/* Main Content & Pitch Styling */
 .main-content {
   flex: 3;
 }
-.controls-container {
-  background: var(--surface-color);
-  padding: 15px 20px;
-  border-radius: var(--border-radius);
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-.search-wrapper {
-  position: relative;
-  width: 100%;
-}
-.search-wrapper i {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--light-text-color);
-}
-#search-input {
-  width: 100%;
-  padding: 12px 20px 12px 45px;
-  border-radius: 25px;
-  border: 1px solid var(--border-color);
-  font-size: 1rem;
-}
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-.filter-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-.filter-label {
-  font-weight: 500;
-  color: var(--light-text-color);
-  margin-right: 10px;
-}
-.filter-btn,
-.sort-btn {
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  padding: 8px 18px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s;
-}
-.filter-btn.active {
-  background-color: var(--primary-color);
-  color: white;
-  border-color: var(--primary-color);
-}
-.sort-btn.active {
-  background-color: var(--secondary-color);
-  color: white;
-}
 
-/* View Sơ đồ */
 .formation-controls {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 #formation-select {
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   font-size: 1rem;
 }
+
 .pitch {
   background: var(--pitch-color);
   border: 3px solid var(--pitch-line-color);
   border-radius: var(--border-radius);
-  height: 75vh;
-  min-height: 550px;
+  height: 80vh;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -207,6 +157,7 @@ header {
   position: relative;
   overflow: hidden;
 }
+
 .pitch::before,
 .pitch::after {
   content: '';
@@ -215,6 +166,7 @@ header {
   transform: translateX(-50%);
   border: 2px solid var(--pitch-line-color);
 }
+
 .pitch::before {
   top: -2px;
   width: 40%;
@@ -222,6 +174,7 @@ header {
   border-top: none;
   border-radius: 0 0 15px 15px;
 }
+
 .pitch::after {
   bottom: -2px;
   width: 40%;
@@ -229,6 +182,7 @@ header {
   border-bottom: none;
   border-radius: 15px 15px 0 0;
 }
+
 .formation-row {
   display: flex;
   justify-content: space-around;
@@ -236,8 +190,9 @@ header {
   width: 100%;
   z-index: 10;
 }
+
 .player-slot {
-  width: 125px;
+  width: 80px;
   height: 100px;
   display: flex;
   flex-direction: column;
@@ -247,9 +202,11 @@ header {
   position: relative;
   cursor: pointer;
 }
+
 .player-slot.filled:hover .remove-player {
   opacity: 1;
 }
+
 .slot-icon {
   width: 60px;
   height: 60px;
@@ -262,17 +219,21 @@ header {
   margin-bottom: 5px;
   transition: all 0.3s;
 }
+
 .player-slot.empty .slot-icon {
   border: 2px dashed var(--pitch-line-color);
   color: var(--pitch-line-color);
 }
+
 .player-slot.empty:hover .slot-icon {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .player-slot.filled .slot-icon {
   background: #e76f51;
   border: 2px solid white;
 }
+
 .player-name {
   font-size: 0.9rem;
   font-weight: 500;
@@ -282,10 +243,12 @@ header {
   white-space: nowrap;
   width: 100%;
 }
+
 .slot-position {
   font-size: 0.8rem;
   color: var(--pitch-line-color);
 }
+
 .remove-player {
   position: absolute;
   top: -5px;
@@ -305,78 +268,7 @@ header {
   z-index: 20;
 }
 
-/* View Lưới cầu thủ */
-.player-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
-.player-card {
-  background: var(--surface-color);
-  padding: 20px;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.player-card .shirt-number {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: var(--secondary-color);
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-.player-card .golden-ball-icon {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  color: var(--secondary-color);
-  font-size: 1.5rem;
-}
-.player-card h3 {
-  margin-top: 10px;
-  font-size: 1.2rem;
-}
-.player-card .position {
-  color: var(--light-text-color);
-  margin-bottom: 15px;
-}
-.player-card .stats {
-  display: flex;
-  justify-content: space-around;
-  font-size: 0.9rem;
-}
-.player-card .card-info {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  display: flex;
-  gap: 8px;
-}
-.card-info span {
-  font-size: 0.8rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: bold;
-  color: white;
-}
-.card-info .yellow {
-  background-color: #ffc107;
-}
-.card-info .red {
-  background-color: #dc3545;
-}
-
-/* Modal */
+/* Modal CSS */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -389,6 +281,7 @@ header {
   justify-content: center;
   z-index: 1000;
 }
+
 .modal-content {
   background: white;
   padding: 30px;
@@ -396,19 +289,17 @@ header {
   width: 90%;
   max-width: 400px;
 }
+
 .form-group {
   margin-bottom: 15px;
 }
-.form-group-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
 }
+
 .form-group input,
 .form-group select {
   width: 100%;
@@ -416,19 +307,14 @@ header {
   border: 1px solid var(--border-color);
   border-radius: 8px;
 }
-.form-row {
-  display: flex;
-  gap: 15px;
-}
-.form-row .form-group {
-  flex: 1;
-}
+
 .modal-actions {
   display: flex;
   gap: 15px;
   justify-content: flex-end;
   margin-top: 25px;
 }
+
 .modal-actions button {
   padding: 10px 25px;
   border-radius: 8px;
@@ -440,6 +326,7 @@ header {
   background-color: var(--primary-color);
   color: white;
 }
+
 .btn-cancel {
   background-color: #f1f1f1;
   color: var(--text-color);

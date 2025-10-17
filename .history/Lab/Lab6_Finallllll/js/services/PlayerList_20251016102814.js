@@ -1,3 +1,4 @@
+// js/services/PlayerList.js
 import { FORMATIONS } from '../config/formations.js';
 import { Player } from '../models/PlayerModels.js';
 
@@ -138,6 +139,7 @@ export default class PlayerList {
       );
     }
 
+    // Handle special filters
     if (this.players.length > 0) {
       switch (state.filter) {
         case 'top-scorer':
@@ -155,21 +157,10 @@ export default class PlayerList {
         case 'golden-ball':
           result = result.filter((p) => p.isGoldenBall);
           break;
-        case 'has-yellow-card':
-          result = result.filter((p) => p.yellowCards > 0);
-          break;
-        case 'has-red-card':
-          result = result.filter((p) => p.redCards > 0);
-          break;
-        case 'forward':
-        case 'midfielder':
-        case 'defender':
-        case 'goalkeeper':
-          result = result.filter((p) => p.position === state.filter);
-          break;
       }
     }
 
+    // Handle sorting
     const [sortBy, dir] = state.sort.split('-');
     const positionOrder = {
       'Thủ Môn': 1,
@@ -210,7 +201,7 @@ export default class PlayerList {
                                   : 'fa-plus-circle'
                               } roster-toggle"></i>`
                             : ''
-                        }  <i class="fas fa-trash-alt"></i> </div>
+                        } <i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i> </div>
                     </li>`;
       })
       .join('');

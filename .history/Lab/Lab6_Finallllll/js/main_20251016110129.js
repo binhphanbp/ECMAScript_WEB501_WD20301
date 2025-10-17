@@ -60,6 +60,7 @@ window.onload = () => {
   };
   const hideModal = () => ui.modal.overlay.classList.add('hidden');
 
+  // Event Listeners
   ui.searchInput.addEventListener('input', (e) => {
     currentState.searchQuery = e.target.value;
     refreshUI();

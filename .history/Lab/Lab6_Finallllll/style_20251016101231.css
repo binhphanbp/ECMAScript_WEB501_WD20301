@@ -1,0 +1,14 @@
+/* ... Giữ nguyên tất cả CSS từ phiên bản trước ... */
+/* Thêm class quan trọng này ở cuối file */
+.hidden {
+    display: none !important;
+}
+/* Bạn có thể sao chép lại toàn bộ CSS của câu trả lời trước, nó đã bao gồm tất cả những gì cần thiết */
+:root {
+    --primary-color: #4A90E2; --secondary-color: #F5A623; --background-color: #F4F7FC; --surface-color: #FFFFFF; --text-color: #333333; --light-text-color: #888888; --border-color: #E0E0E0; --shadow: 0 4px 12px rgba(0, 0, 0, 0.08); --border-radius: 12px; --pitch-color: #2a9d8f; --pitch-line-color: rgba(255, 255, 255, 0.3);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Be Vietnam Pro', sans-serif; background-color: var(--background-color); color: var(--text-color); }
+header { background: var(--surface-color); padding: 20px 40px; border-bottom: 1px solid var(--border-color); text-align: center; }
+.container { display: flex; gap: 30px; padding: 30px; max-width: 1400px; margin: 0 auto; }
+.player-list-container { flex: 1; max-width: 350px; background: var(--surface-color); border-radius: var(--border-radius

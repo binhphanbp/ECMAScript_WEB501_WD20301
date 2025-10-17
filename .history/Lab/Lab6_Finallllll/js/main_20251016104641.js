@@ -1,3 +1,4 @@
+// js/main.js
 import PlayerList from './services/PlayerList.js';
 
 window.onload = () => {
@@ -60,6 +61,7 @@ window.onload = () => {
   };
   const hideModal = () => ui.modal.overlay.classList.add('hidden');
 
+  // Event Listeners
   ui.searchInput.addEventListener('input', (e) => {
     currentState.searchQuery = e.target.value;
     refreshUI();
@@ -94,22 +96,25 @@ window.onload = () => {
     }
   });
 
+  // === KHỐI CODE ĐÃ SỬA LỖI ===
   ui.playerList.addEventListener('click', (e) => {
     const li = e.target.closest('li');
     if (!li) return;
     const id = parseInt(li.dataset.id);
+
     if (e.target.classList.contains('roster-toggle')) {
       if (li.classList.contains('disabled')) return;
       playerManager.togglePlayerInFormation(id);
     } else if (e.target.classList.contains('fa-edit')) {
       showModal(playerManager.getPlayerById(id));
-      return;
-    } else if (
-      e.target.classList.contains('fa-trash-alt') &&
-      confirm('Xóa cầu thủ này?')
-    ) {
-      playerManager.deletePlayer(id);
+      return; // <-- LỖI ĐÃ ĐƯỢC SỬA Ở ĐÂY!
+    } else if (e.target.classList.contains('fa-trash-alt')) {
+      if (confirm('Bạn có chắc chắn muốn xóa cầu thủ này?')) {
+        playerManager.deletePlayer(id);
+      }
     }
+
+    // Chỉ gọi refreshUI cho các hành động toggle và xóa
     refreshUI();
   });
 
@@ -148,6 +153,7 @@ window.onload = () => {
     if (e.target === ui.modal.overlay) hideModal();
   });
 
+  // Khởi tạo dữ liệu mẫu nếu localStorage trống
   if (playerManager.players.length === 0) {
     playerManager.addPlayer({
       name: 'Quang Hải',

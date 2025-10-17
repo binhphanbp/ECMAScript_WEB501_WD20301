@@ -52,29 +52,12 @@
             <button class="filter-btn" data-filter="midfielder">Tiền Vệ</button>
             <button class="filter-btn" data-filter="defender">Hậu Vệ</button>
             <button class="filter-btn" data-filter="goalkeeper">Thủ Môn</button>
-            <button class="filter-btn" data-filter="top-scorer">
-              Vua phá lưới
-            </button>
-            <button class="filter-btn" data-filter="youngest">Trẻ nhất</button>
-            <button class="filter-btn" data-filter="oldest">
-              Lớn tuổi nhất
-            </button>
-            <button class="filter-btn" data-filter="golden-ball">
-              Quả bóng vàng
-            </button>
-            <button class="filter-btn" data-filter="has-yellow-card">
-              Có thẻ vàng
-            </button>
-            <button class="filter-btn" data-filter="has-red-card">
-              Có thẻ đỏ
-            </button>
           </div>
           <div id="sort-container" class="filter-buttons">
             <span class="filter-label">Sắp xếp:</span>
             <button class="sort-btn active" data-sort="name-asc">
               Tên A-Z
             </button>
-            <button class="sort-btn" data-sort="position-asc">Vị trí</button>
             <button class="sort-btn" data-sort="goals-desc">Bàn thắng</button>
             <button class="sort-btn" data-sort="age-asc">Tuổi</button>
           </div>
@@ -128,27 +111,6 @@
           <div class="form-group">
             <label for="goals">Số Bàn Thắng</label
             ><input type="number" id="goals" required min="0" value="0" />
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="yellowCards">Thẻ Vàng</label
-              ><input
-                type="number"
-                id="yellowCards"
-                required
-                min="0"
-                value="0"
-              />
-            </div>
-            <div class="form-group">
-              <label for="redCards">Thẻ Đỏ</label
-              ><input type="number" id="redCards" required min="0" value="0" />
-            </div>
-          </div>
-          <div class="form-group form-group-checkbox">
-            <input type="checkbox" id="isGoldenBall" /><label for="isGoldenBall"
-              >Đạt Quả Bóng Vàng?</label
-            >
           </div>
           <div class="modal-actions">
             <button type="submit" class="btn-save">Lưu</button

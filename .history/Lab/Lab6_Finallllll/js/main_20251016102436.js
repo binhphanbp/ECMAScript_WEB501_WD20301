@@ -1,3 +1,4 @@
+// js/main.js
 import PlayerList from './services/PlayerList.js';
 
 window.onload = () => {
@@ -60,6 +61,7 @@ window.onload = () => {
   };
   const hideModal = () => ui.modal.overlay.classList.add('hidden');
 
+  // Event Listeners
   ui.searchInput.addEventListener('input', (e) => {
     currentState.searchQuery = e.target.value;
     refreshUI();
@@ -186,16 +188,6 @@ window.onload = () => {
       position: 'Thủ Môn',
       goals: 0,
       yellowCards: 0,
-      redCards: 0,
-      isGoldenBall: false,
-    });
-    playerManager.addPlayer({
-      name: 'Hoàng Đức',
-      age: 26,
-      shirtNumber: 14,
-      position: 'Tiền Vệ',
-      goals: 8,
-      yellowCards: 2,
       redCards: 0,
       isGoldenBall: false,
     });

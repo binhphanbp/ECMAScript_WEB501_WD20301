@@ -170,6 +170,7 @@ export default class PlayerList {
       }
     }
 
+    // Handle sorting
     const [sortBy, dir] = state.sort.split('-');
     const positionOrder = {
       'Thủ Môn': 1,

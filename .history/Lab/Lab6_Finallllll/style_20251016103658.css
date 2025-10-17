@@ -237,7 +237,7 @@ header {
   z-index: 10;
 }
 .player-slot {
-  width: 125px;
+  width: 80px;
   height: 100px;
   display: flex;
   flex-direction: column;

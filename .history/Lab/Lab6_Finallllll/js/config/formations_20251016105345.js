@@ -1,3 +1,4 @@
+// js/config/formations.js
 export const FORMATIONS = {
   '4-4-2': {
     name: '4-4-2',

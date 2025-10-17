@@ -1,3 +1,4 @@
+// js/main.js
 import PlayerList from './services/PlayerList.js';
 
 window.onload = () => {
@@ -60,6 +61,7 @@ window.onload = () => {
   };
   const hideModal = () => ui.modal.overlay.classList.add('hidden');
 
+  // Event Listeners
   ui.searchInput.addEventListener('input', (e) => {
     currentState.searchQuery = e.target.value;
     refreshUI();
@@ -148,6 +150,7 @@ window.onload = () => {
     if (e.target === ui.modal.overlay) hideModal();
   });
 
+  // Khởi tạo dữ liệu mẫu nếu localStorage trống
   if (playerManager.players.length === 0) {
     playerManager.addPlayer({
       name: 'Quang Hải',

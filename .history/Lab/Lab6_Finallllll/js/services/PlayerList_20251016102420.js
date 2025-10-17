@@ -1,3 +1,4 @@
+// js/services/PlayerList.js
 import { FORMATIONS } from '../config/formations.js';
 import { Player } from '../models/PlayerModels.js';
 
@@ -132,60 +133,35 @@ export default class PlayerList {
 
   getFilteredPlayers(state) {
     let result = [...this.players];
-    if (state.searchQuery) {
+    if (state.searchQuery)
       result = result.filter((p) =>
         p.name.toLowerCase().includes(state.searchQuery.toLowerCase())
       );
-    }
 
-    if (this.players.length > 0) {
-      switch (state.filter) {
-        case 'top-scorer':
-          const maxGoals = Math.max(...result.map((p) => p.goals));
-          result = result.filter((p) => p.goals === maxGoals);
-          break;
-        case 'youngest':
-          const minAge = Math.min(...result.map((p) => p.age));
-          result = result.filter((p) => p.age === minAge);
-          break;
-        case 'oldest':
-          const maxAge = Math.max(...result.map((p) => p.age));
-          result = result.filter((p) => p.age === maxAge);
-          break;
-        case 'golden-ball':
-          result = result.filter((p) => p.isGoldenBall);
-          break;
-        case 'has-yellow-card':
-          result = result.filter((p) => p.yellowCards > 0);
-          break;
-        case 'has-red-card':
-          result = result.filter((p) => p.redCards > 0);
-          break;
-        case 'forward':
-        case 'midfielder':
-        case 'defender':
-        case 'goalkeeper':
-          result = result.filter((p) => p.position === state.filter);
-          break;
-      }
+    switch (state.filter) {
+      case 'forward':
+      case 'midfielder':
+      case 'defender':
+      case 'goalkeeper':
+        result = result.filter((p) => p.position === state.filter);
+        break;
+      case 'golden-ball':
+        result = result.filter((p) => p.isGoldenBall);
+        break;
+      case 'has-yellow-card':
+        result = result.filter((p) => p.yellowCards > 0);
+        break;
+      case 'has-red-card':
+        result = result.filter((p) => p.redCards > 0);
+        break;
     }
 
     const [sortBy, dir] = state.sort.split('-');
-    const positionOrder = {
-      'Thủ Môn': 1,
-      'Hậu Vệ': 2,
-      'Tiền Vệ': 3,
-      'Tiền Đạo': 4,
-    };
     result.sort((a, b) => {
       if (sortBy === 'name')
         return dir === 'asc'
           ? a.name.localeCompare(b.name)
           : b.name.localeCompare(a.name);
-      if (sortBy === 'position')
-        return dir === 'asc'
-          ? positionOrder[a.position] - positionOrder[b.position]
-          : positionOrder[b.position] - positionOrder[a.position];
       return dir === 'asc' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy];
     });
     return result;
@@ -210,7 +186,7 @@ export default class PlayerList {
                                   : 'fa-plus-circle'
                               } roster-toggle"></i>`
                             : ''
-                        }  <i class="fas fa-trash-alt"></i> </div>
+                        } <i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i> </div>
                     </li>`;
       })
       .join('');
@@ -249,7 +225,7 @@ export default class PlayerList {
   renderPlayerGrid(targetEl, players) {
     targetEl.innerHTML =
       players.length === 0
-        ? '<p style="text-align: center; width: 100%;">Không có cầu thủ nào phù hợp.</p>'
+        ? '<p>Không có cầu thủ nào.</p>'
         : players
             .map(
               (p) =>
